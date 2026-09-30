@@ -1,0 +1,577 @@
+<!-- ================================================================ -->
+<!--                                                                -->
+<!--   FUNDAMENTOS DE HTML & CSS                                    -->
+<!--   Módulo 02 — Front-end: Estrutura e Estilização Web           -->
+<!--                                                                -->
+<!-- ================================================================ -->
+
+<!-- HTML (HyperText Markup Language) é a linguagem de MARCAÇÃO que  -->
+<!-- define a ESTRUTURA de uma página web. Não é uma linguagem de     -->
+<!-- programação — ela não tem lógica, loops ou condições. É          -->
+<!-- DECLARATIVA: você descreve O QUE deve existir, e o navegador     -->
+<!-- renderiza. A web funciona sobre três pilares tecnológicos:        -->
+<!-- → HTML: esqueleto/estrutura (o que existe)                       -->
+<!-- → CSS:  aparência/estilização (como parece)                      -->
+<!-- → JS:   comportamento/interatividade (como reage)                -->
+
+<!-- ================================================================ -->
+<!-- DOCTYPE — Declaração do tipo de documento                        -->
+<!-- ================================================================ -->
+<!-- <!doctype html> instrui o navegador a usar o padrão HTML5,       -->
+<!-- a versão mais recente e amplamente suportada da linguagem.        -->
+<!-- Sem essa declaração, o navegador entra em "quirks mode"           -->
+<!-- (modo de compatibilidade com browsers dos anos 90), o que pode   -->
+<!-- causar diferenças visuais imprevisíveis entre Chrome, Firefox,   -->
+<!-- Safari e Edge.                                                    -->
+<!doctype html>
+
+<!-- ================================================================ -->
+<!-- TAG <html> — Raiz do documento                                   -->
+<!-- ================================================================ -->
+<!-- Toda página HTML tem exatamente um elemento <html>, que envolve  -->
+<!-- todo o restante do documento. Ele é chamado de "elemento raiz".  -->
+<!--                                                                  -->
+<!-- lang="pt-BR": informa o idioma do conteúdo ao navegador. Isso   -->
+<!-- é importante por três razões:                                    -->
+<!-- 1. ACESSIBILIDADE: leitores de tela usam essa info para          -->
+<!--    pronunciar o conteúdo corretamente para deficientes visuais.  -->
+<!-- 2. SEO: mecanismos de busca indexam o conteúdo no idioma certo.  -->
+<!-- 3. TRADUÇÃO: o Google Translate detecta o idioma automaticamente.-->
+<html lang="pt-BR">
+
+  <!-- ============================================================== -->
+  <!-- <head> — Cabeçalho do documento (invisível para o usuário)     -->
+  <!-- ============================================================== -->
+  <!-- <head> carrega os METADADOS: informações SOBRE a página que     -->
+  <!-- não aparecem visualmente no corpo, mas que o navegador,        -->
+  <!-- os buscadores e serviços externos precisam para funcionar.     -->
+  <head>
+
+    <!-- charset="UTF-8": define a codificação de caracteres.         -->
+    <!-- UTF-8 (Unicode Transformation Format - 8-bit) é o padrão     -->
+    <!-- universal que suporta praticamente todos os sistemas de       -->
+    <!-- escrita do mundo — incluindo acentos (ã, é, ç), kanji, árabe -->
+    <!-- e emojis. Sem essa linha, caracteres especiais podem aparecer -->
+    <!-- corrompidos na tela: "ação" viraria "a��o".                   -->
+    <!-- Sempre coloque como a PRIMEIRA linha dentro de <head>.        -->
+    <meta charset="UTF-8" />
+
+    <!-- viewport: meta tag essencial para páginas responsivas.        -->
+    <!-- Sem ela, dispositivos móveis renderizam a página como se      -->
+    <!-- fosse um desktop de 980px de largura e depois a "miniaturizam" -->
+    <!-- — resultando em texto minúsculo e layout quebrado.            -->
+    <!--                                                               -->
+    <!-- width=device-width  → usa a largura real do dispositivo       -->
+    <!--                       (ex: 375px num iPhone, 412px num Galaxy)-->
+    <!-- initial-scale=1.0   → sem zoom inicial, escala 1:1            -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- <title>: texto exibido na aba do navegador e nos resultados   -->
+    <!-- de pesquisa do Google. É um dos fatores mais importantes de   -->
+    <!-- SEO on-page. Boas práticas:                                   -->
+    <!-- → Entre 50 e 60 caracteres (Google trunca além disso)         -->
+    <!-- → Descrever o conteúdo real da página                         -->
+    <!-- → Cada página do site deve ter um title único                 -->
+    <title>Mês dos Namorados</title>
+
+    <!-- ============================================================ -->
+    <!-- <style> — CSS Interno                                        -->
+    <!-- ============================================================ -->
+    <!-- CSS (Cascading Style Sheets) controla a APARÊNCIA dos         -->
+    <!-- elementos HTML. Pode ser incluído de três formas:             -->
+    <!--                                                              -->
+    <!-- 1. INLINE:   <p style="color: red"> texto </p>               -->
+    <!--    Prioridade máxima, mas mistura estrutura e estilo — evitar.-->
+    <!--                                                              -->
+    <!-- 2. INTERNO:  dentro de <style> no <head> desta forma aqui.   -->
+    <!--    Bom para aprendizado e prototipação rápida.                -->
+    <!--                                                              -->
+    <!-- 3. EXTERNO:  <link rel="stylesheet" href="style.css" />       -->
+    <!--    PADRÃO profissional: separa responsabilidades, permite      -->
+    <!--    reutilização em múltiplas páginas e facilita manutenção.   -->
+    <style>
+
+      /* ──────────────────────────────────────────────────────────── */
+      /* SELETOR UNIVERSAL  *  — aplica a TODOS os elementos          */
+      /* ──────────────────────────────────────────────────────────── */
+      /* O asterisco (*) é o "seletor universal" do CSS: captura      */
+      /* absolutamente qualquer tag HTML da página.                   */
+      /*                                                              */
+      /* Aqui ele tem propósito DIDÁTICO: ao aplicar uma borda em     */
+      /* todo elemento, torna visível o "Box Model" do CSS — o        */
+      /* modelo que define como cada elemento ocupa espaço na tela.   */
+      /* Todo elemento é uma caixa com: content + padding + border +  */
+      /* margin (estudaremos Box Model em profundidade mais à frente). */
+      /*                                                              */
+      /* ATENÇÃO: em projetos reais, usar * sem critério pode impactar */
+      /* a performance de páginas complexas com milhares de elementos. */
+      * {
+        border: 1px solid; /* borda sólida preta de 1px em TODO elemento */
+      }
+
+      /* ──────────────────────────────────────────────────────────── */
+      /* SELETOR DE ELEMENTO  img  — estiliza todas as imagens        */
+      /* ──────────────────────────────────────────────────────────── */
+      /* ATENÇÃO — BUG NESTA LINHA:                                   */
+      /* O "* /" antes de "img" é um fechamento de comentário CSS sem  */
+      /* abertura correspondente. É um erro de digitação.             */
+      /* O correto seria: img { width: 50%; }                         */
+      /* O CSS ignora tokens inválidos com "error recovery" e         */
+      /* provavelmente ainda aplica a regra, mas evite em produção.   */
+      */ img {
+        /* width: 50% → a imagem ocupa metade da largura do seu        */
+        /* elemento pai (o elemento que a contém).                     */
+        /* % em CSS é RELATIVO ao elemento pai — muito mais flexível   */
+        /* que pixels fixos, pois se adapta ao tamanho da tela.        */
+        width: 50%;
+      }
+
+      /* ──────────────────────────────────────────────────────────── */
+      /* SELETOR DE ID  #parker  — estilo único para o Spider-Man     */
+      /* ──────────────────────────────────────────────────────────── */
+      /* IDs são ÚNICOS no documento: cada id só pode aparecer        */
+      /* uma vez por página. No CSS, use # (cerquilha) para           */
+      /* selecionar pelo ID.                                           */
+      /*                                                              */
+      /* Hierarquia de ESPECIFICIDADE do CSS (do mais forte):         */
+      /* !important (evitar) > inline style > ID > Classe > Elemento  */
+      /* Números: ID=100pts, Classe=10pts, Elemento=1pt               */
+      /* Por isso, estilos de #parker sobrescrevem os do seletor *.   */
+      #parker {
+        border: 3px solid blue; /* borda azul de 3px — sobrescreve a borda do * */
+
+        /* box-shadow adiciona sombra ao elemento.                     */
+        /* Sintaxe: box-shadow: offset-x  offset-y  blur  cor;        */
+        /* → offset-x = 0: sem deslocamento horizontal                 */
+        /* → offset-y = 10px: sombra 10px para baixo                  */
+        /* → blur = 8px: desfoque de 8px (borda da sombra difusa)     */
+        /* → cor padrão (preto)                                        */
+        box-shadow: 0 10px 8px;
+      }
+
+      /* ──────────────────────────────────────────────────────────── */
+      /* SELETOR DE CLASSE  .geralts  — estilo para imagens do Geralt */
+      /* ──────────────────────────────────────────────────────────── */
+      /* Classes são REUTILIZÁVEIS: qualquer número de elementos pode  */
+      /* receber a mesma classe. No CSS, use . (ponto) para selecioná- */
+      /* las. No HTML, use o atributo class="nome-da-classe".          */
+      /*                                                              */
+      /* Um elemento pode ter várias classes ao mesmo tempo:           */
+      /* <img class="geralts destaque rounded" />                      */
+      .geralts {
+        border: 5px solid green; /* borda verde de 5px nos dois Geralts */
+      }
+
+      /* ──────────────────────────────────────────────────────────── */
+      /* SELETOR MÚLTIPLO  table, tr, td  — estilo para tabela        */
+      /* ──────────────────────────────────────────────────────────── */
+      /* Separar seletores por vírgula (,) aplica o MESMO estilo a    */
+      /* múltiplos elementos de uma vez — evita repetição de código.  */
+      /* <table>: a tabela inteira                                     */
+      /* <tr>   : table row — cada linha da tabela                    */
+      /* <td>   : table data — cada célula de dado                    */
+      table,
+      tr,
+      td {
+        border: 1px solid; /* borda em cada componente da tabela */
+      }
+
+      /* ──────────────────────────────────────────────────────────── */
+      /* SELETOR DE ELEMENTO  label  — rótulos do formulário           */
+      /* ──────────────────────────────────────────────────────────── */
+      label {
+        font-size: 16px;        /* tamanho da fonte em pixels */
+        color: rgb(92, 76, 76); /* cor usando o modelo RGB:                  */
+                                /* Vermelho=92, Verde=76, Azul=76            */
+                                /* → resulta em um tom de marrom-acinzentado */
+        display: block;         /* block: o label ocupa a linha inteira,     */
+                                /* empurrando o input para a linha seguinte. */
+                                /* inline (padrão) ficaria ao lado do input. */
+      }
+
+      /* ──────────────────────────────────────────────────────────── */
+      /* SELETOR DE ELEMENTO  input  — campos do formulário           */
+      /* ──────────────────────────────────────────────────────────── */
+      input {
+        border-radius: 4px; /* arredonda os CANTOS do input em 4px.       */
+                            /* Valores comuns: 0px = retângulo, 4-8px =   */
+                            /* levemente arredondado, 50% = círculo/pílula */
+      }
+
+      /* ──────────────────────────────────────────────────────────── */
+      /* SELETOR DE ID  #form-register  — container do formulário     */
+      /* ──────────────────────────────────────────────────────────── */
+      #form-register {
+        width: 200px;     /* largura fixa de 200px para o container do form */
+
+        background-color: beige; /* cor de fundo. "beige" é uma palavra-chave CSS.  */
+                                 /* Alternativas: #f5f5dc (hex), rgb(245,245,220)   */
+
+        /* font-family define a fonte e lista ALTERNATIVAS (fallback):  */
+        /* o navegador tenta Verdana primeiro; se não houver, Geneva;   */
+        /* depois Tahoma; por fim qualquer fonte sans-serif disponível. */
+        /* Sempre termine com uma família genérica (serif, sans-serif,  */
+        /* monospace) como último fallback garantido.                    */
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+        /* display: flex ativa o Flexbox — modelo moderno de layout.    */
+        /* Com Flexbox, os filhos diretos se tornam "flex items" e o    */
+        /* container controla como eles se distribuem no espaço.        */
+        /* Estudaremos Flexbox em profundidade mais à frente.           */
+        display: flex;
+
+        /* box-shadow com quarto argumento: opacidade da cor.           */
+        /* rgb(0, 0, 0, 0.1) = preto com 10% de opacidade (quase       */
+        /* transparente) → sombra sutil e elegante.                     */
+        /* Nota: rgb() com 4° argumento é o mesmo que rgba().           */
+        box-shadow: 10px 8px rgb(0, 0, 0, 0.1);
+
+        /* justify-content controla o alinhamento dos filhos no eixo   */
+        /* PRINCIPAL do Flexbox (horizontal, por padrão).               */
+        /* "center" = centraliza os filhos horizontalmente.             */
+        justify-content: center;
+
+        border-radius: 10px; /* cantos arredondados de 10px no container */
+
+        /* padding: espaçamento INTERNO (entre o conteúdo e a borda).   */
+        /* padding: 40px → 40px em TODOS os lados (cima, baixo, esq,   */
+        /* dir). Diferença fundamental:                                  */
+        /* → padding: espaço DENTRO do elemento (interno)               */
+        /* → margin:  espaço FORA do elemento (externo, entre elementos)*/
+        padding: 40px;
+      }
+
+    </style>
+  </head>
+
+  <!-- ============================================================== -->
+  <!-- <body> — Corpo do documento (tudo que o usuário vê)            -->
+  <!-- ============================================================== -->
+  <!-- Tudo dentro de <body> é renderizado visualmente pelo navegador. -->
+  <!-- Os elementos HTML se dividem em dois comportamentos padrão:     -->
+  <!-- → BLOCK-LEVEL: ocupa 100% da largura disponível, empurra o     -->
+  <!--   próximo elemento para uma nova linha. Ex: <h1>, <p>, <div>   -->
+  <!-- → INLINE:      ocupa só o espaço do seu conteúdo, permite       -->
+  <!--   outros elementos ao lado. Ex: <a>, <span>, <img>              -->
+  <body>
+
+    <!-- ============================================================ -->
+    <!-- BLOCO 1 — TÍTULOS (Headings: h1 a h6)                       -->
+    <!-- ============================================================ -->
+    <!-- HTML define 6 níveis de título, do mais relevante (h1) ao    -->
+    <!-- menos relevante (h6). Pense como capítulos de um livro:      -->
+    <!-- h1 = título do livro, h2 = capítulo, h3 = subcapítulo...    -->
+    <!--                                                              -->
+    <!-- Por padrão, o navegador aplica esses tamanhos:               -->
+    <!-- h1 ≈ 2em (32px)    h2 ≈ 1.5em (24px)   h3 ≈ 1.17em (18.7px)-->
+    <!-- h4 ≈ 1em (16px)    h5 ≈ 0.83em (13.3px) h6 ≈ 0.67em (10.7px)-->
+    <!-- (1em = tamanho base da fonte, geralmente 16px)               -->
+    <!--                                                              -->
+    <!-- Boas práticas de SEO e acessibilidade:                       -->
+    <!-- → Use apenas UM <h1> por página (é o título principal)       -->
+    <!-- → Siga a hierarquia em ordem (não pule de h1 direto para h4) -->
+    <!-- → Não escolha heading pelo tamanho visual — use CSS para     -->
+    <!--   isso. O heading deve refletir SEMÂNTICA, não aparência.    -->
+
+    <h1>Grêmio</h1>      <!-- Título principal — mais importante da página -->
+    <h2>Corinthians</h2> <!-- Subtítulo de seção                           -->
+    <h3>Fluminense</h3>  <!-- Subtítulo de sub-seção                       -->
+    <h4>Atlético MG</h4> <!-- Nível 4 — seção menor                        -->
+    <h5>Inter</h5>       <!-- Nível 5 — raramente necessário               -->
+    <h6>Vasco</h6>       <!-- Nível 6 — menor heading padrão               -->
+
+    <!-- ============================================================ -->
+    <!-- BLOCO 2 — PARÁGRAFO E LINK (p + a)                          -->
+    <!-- ============================================================ -->
+    <!-- <p> (paragraph): elemento para blocos de texto corrido.      -->
+    <!-- É block-level: cria nova linha antes e depois, com margens   -->
+    <!-- automáticas acima e abaixo (geralmente 1em de margin).       -->
+    <!--                                                              -->
+    <!-- <a> (anchor): cria hiperlinks — a essência do "Hyper" em     -->
+    <!-- HTML. É inline: flui junto com o texto.                      -->
+    <!--                                                              -->
+    <!-- O atributo href (Hypertext REFerence) define o destino:      -->
+    <!-- → URL absoluta:    href="https://gremio.net"    (outro site) -->
+    <!-- → URL relativa:    href="sobre.html"            (mesmo site) -->
+    <!-- → Âncora interna:  href="#secao-contato"        (mesma página)-->
+    <!-- → E-mail:          href="mailto:contato@email.com"           -->
+    <!-- → Telefone:        href="tel:+5551999998888"                 -->
+    <!--                                                              -->
+    <!-- Para abrir em nova aba, adicione:                            -->
+    <!-- target="_blank" rel="noopener noreferrer"                    -->
+    <!-- O "rel=noopener noreferrer" é SEGURANÇA: impede que a nova   -->
+    <!-- aba acesse a janela de origem via window.opener (clickjacking)-->
+    <p>Olá, Mundo! <a href="https://gremio.net">Grêmio</a></p>
+
+    <!-- ============================================================ -->
+    <!-- BLOCO 3 — IMAGENS (<img>)                                    -->
+    <!-- ============================================================ -->
+    <!-- <img> é um "void element" (elemento vazio): não tem conteúdo -->
+    <!-- nem tag de fechamento separada — por convenção usa-se />.    -->
+    <!--                                                              -->
+    <!-- ATRIBUTOS ESSENCIAIS:                                        -->
+    <!-- → src (source): caminho ou URL da imagem.                    -->
+    <!-- → alt (alternative text): texto descritivo OBRIGATÓRIO para: -->
+    <!--   • Acessibilidade: leitores de tela anunciam o alt para     -->
+    <!--     pessoas com deficiência visual.                           -->
+    <!--   • Fallback: exibido quando a imagem não carrega.           -->
+    <!--   • SEO: o Google usa o alt para indexar imagens.            -->
+    <!--                                                              -->
+    <!-- FORMATOS DE IMAGEM — quando usar cada um:                    -->
+    <!-- → JPEG/JPG: fotos e imagens com muitas cores. Boa compressão, -->
+    <!--   sem transparência.                                          -->
+    <!-- → PNG:      imagens com transparência (fundo transparente).  -->
+    <!-- → GIF:      animações simples, paleta limitada (256 cores).  -->
+    <!-- → SVG:      gráficos vetoriais (logos, ícones). Escala sem   -->
+    <!--   perder qualidade.                                           -->
+    <!-- → WebP:     formato moderno do Google. ~30% menor que JPEG   -->
+    <!--   com mesma qualidade. Suporte nos browsers modernos.        -->
+
+    <!-- ----- 3.1: Imagem externa — carregada de outro servidor ----- -->
+    <!-- src com URL completa = imagem hospedada em servidor externo.  -->
+    <!-- Desvantagem: depende do servidor de terceiros ficar online.   -->
+    <!-- Cuidado: verifique licenças de uso antes de usar imagens de   -->
+    <!-- sites externos em projetos públicos.                          -->
+    <img
+      src="https://static.wikia.nocookie.net/liberproeliis/images/f/f2/Witcher_PNG22.png/revision/latest?cb=20191222192630&path-prefix=pt-br"
+      alt="Geralt de Rívia"
+    />
+
+    <!-- ----- 3.2: Imagem local com classe CSS ----- -->
+    <!-- src="assets/geralt.jpeg" → caminho RELATIVO ao index.html.   -->
+    <!-- "Relativo" significa: a partir da pasta onde index.html está, -->
+    <!-- entre na pasta "assets" e carregue o arquivo "geralt.jpeg".  -->
+    <!-- Nenhum servidor externo necessário — faz parte do projeto.   -->
+    <!--                                                              -->
+    <!-- class="geralts" → aplica o estilo definido em .geralts       -->
+    <!-- no CSS acima (borda verde de 5px). Classes são identificadas  -->
+    <!-- no CSS com ponto: .geralts { ... }                           -->
+    <img src="assets/geralt.jpeg" alt="Geralt" class="geralts" />
+
+    <!-- ----- 3.3: Segunda imagem local com a mesma classe ----- -->
+    <!-- Demonstra que classes são REUTILIZÁVEIS: o mesmo estilo      -->
+    <!-- .geralts se aplica a ambas as imagens. Se quisermos alterar  -->
+    <!-- a borda das duas, basta editar o CSS em um único lugar.      -->
+    <!-- Isso é o princípio DRY: Don't Repeat Yourself.               -->
+    <img src="assets/geralt2.png" alt="Geralt" class="geralts" />
+
+    <!-- ----- 3.4: Imagem local com ID único ----- -->
+    <!-- id="parker" → aplica o estilo de #parker no CSS acima.       -->
+    <!-- IDs são ÚNICOS na página: só este elemento pode ter           -->
+    <!-- id="parker". Por isso IDs têm especificidade maior que        -->
+    <!-- classes. Use IDs quando o estilo for exclusivo de um elemento.-->
+    <img src="assets/spider-man.jpg" alt="Peter" id="parker" />
+
+    <!-- ============================================================ -->
+    <!-- BLOCO 4 — TABELA COM IFRAME (dados tabulares + multimídia)   -->
+    <!-- ============================================================ -->
+    <!-- <table> estrutura dados em LINHAS e COLUNAS. Anatomia         -->
+    <!-- completa de uma tabela HTML:                                  -->
+    <!-- → <thead>: grupo do cabeçalho (opcional, boas práticas)      -->
+    <!-- → <tbody>: grupo do corpo de dados (opcional, boas práticas) -->
+    <!-- → <tfoot>: grupo do rodapé, ex: totais (opcional)            -->
+    <!-- → <tr>:    table row — define uma linha                       -->
+    <!-- → <th>:    table header — célula de cabeçalho (negrito+centro)-->
+    <!-- → <td>:    table data — célula de dado comum                  -->
+    <!-- → <caption>: legenda da tabela (acessibilidade)              -->
+    <!--                                                              -->
+    <!-- IMPORTANTE: tabelas servem para dados TABULARES, como         -->
+    <!-- planilhas, horários, comparações de produtos. NUNCA use       -->
+    <!-- tabela para criar layout de página — use CSS Flexbox ou Grid. -->
+    <table>
+      <tr>
+        <!-- <th> = table header: célula de cabeçalho. Por padrão o   -->
+        <!-- navegador aplica font-weight: bold e text-align: center.  -->
+        <!-- Adicione scope="col" ou scope="row" para acessibilidade.  -->
+        <th>Título</th>  <!-- cabeçalho da 1ª coluna -->
+        <th>Vídeo</th>   <!-- cabeçalho da 2ª coluna -->
+      </tr>
+      <tr>
+        <td>
+          <!-- <div>: container genérico block-level. Não tem          -->
+          <!-- semântica própria — serve apenas para AGRUPAR elementos -->
+          <!-- e aplicar estilos. Prefira tags semânticas quando       -->
+          <!-- possível: <section>, <article>, <nav>, <aside>, etc.   -->
+          <div>
+            <!-- <iframe> (inline frame): incorpora outro documento    -->
+            <!-- HTML dentro da página atual — como uma "janela" para  -->
+            <!-- outro conteúdo. Usos mais comuns:                     -->
+            <!-- → Vídeos do YouTube / Vimeo                          -->
+            <!-- → Google Maps                                         -->
+            <!-- → Formulários externos (Typeform, Google Forms)       -->
+            <!--                                                       -->
+            <!-- ATRIBUTOS:                                            -->
+            <!-- src: URL do conteúdo a incorporar.                    -->
+            <!--   O formato /embed/ é específico do YouTube para      -->
+            <!--   incorporação — diferente da URL normal /watch?v=    -->
+            <!-- frameborder="0": remove a borda padrão do iframe.     -->
+            <!--   (Em HTML5 prefira: style="border: none")            -->
+            <!-- width/height: dimensões em pixels. Para responsividade -->
+            <!--   use técnica de "aspect ratio box" com CSS.          -->
+            <!-- title: descrição textual — OBRIGATÓRIO para           -->
+            <!--   acessibilidade. Leitores de tela o anunciam.        -->
+            <iframe
+              src="https://www.youtube.com/embed/klE5WuYgDcw"
+              frameborder="0"
+              width="300"
+              height="300"
+              title="Pica Pau"
+            >
+            </iframe>
+          </div>
+        </td>
+        <td>Conteúdo Vídeo</td> <!-- célula de texto simples -->
+      </tr>
+    </table>
+
+    <!-- ============================================================ -->
+    <!-- BLOCO 5 — FORMULÁRIO DE REGISTRO (<form> + <input>)          -->
+    <!-- ============================================================ -->
+    <!-- <div id="form-register"> é o CONTAINER VISUAL do formulário: -->
+    <!-- recebe os estilos de fundo bege, sombra e bordas arredondadas -->
+    <!-- definidos em #form-register no CSS acima.                    -->
+    <div id="form-register">
+
+      <!-- <form> agrupa os campos de entrada. Atributos importantes:  -->
+      <!-- → action: URL do servidor para onde os dados são enviados.  -->
+      <!-- → method: como os dados são enviados:                       -->
+      <!--   • GET:  dados vão na URL (?nome=Ana&idade=25). Visível,  -->
+      <!--     cacheável, tamanho limitado. Bom para buscas.           -->
+      <!--   • POST: dados vão no body da requisição. Oculto na URL,  -->
+      <!--     sem limite de tamanho. Obrigatório para dados sensíveis. -->
+      <!-- Sem action/method aqui: ao clicar em submit, a página       -->
+      <!-- recarrega com os dados visíveis na URL (comportamento GET). -->
+      <form>
+
+        <!-- ─────────────────────────────────────────────────────── -->
+        <!-- 5.1 — Campo de texto (type="text")                      -->
+        <!-- ─────────────────────────────────────────────────────── -->
+        <!-- <label> identifica o campo para o usuário. Boas práticas: -->
+        <!-- use o atributo "for" no label com o "id" do input — isso  -->
+        <!-- garante que clicar no label mova o foco para o campo.     -->
+        <!-- Exemplo correto: <label for="nome">Nome</label>           -->
+        <!--                  <input id="nome" type="text" />          -->
+        <!-- (Os labels aqui não têm "for" — seria uma melhoria futura)-->
+        <label>Nome Completo</label>
+        <!-- type="text": campo de texto de linha única, o mais básico. -->
+        <!-- placeholder: texto de dica em cinza que desaparece quando  -->
+        <!-- o usuário começa a digitar. Use para exemplos ou dicas,    -->
+        <!-- mas NÃO como substituto do label (acessibilidade).         -->
+        <input type="text" placeholder="Digite seu nome" />
+
+        <!-- ─────────────────────────────────────────────────────── -->
+        <!-- 5.2 — Campo de data (type="date")                       -->
+        <!-- ─────────────────────────────────────────────────────── -->
+        <label>Data de Nascimento</label>
+        <!-- type="date": abre um calendário nativo do navegador.     -->
+        <!-- O valor interno sempre fica no formato ISO 8601:          -->
+        <!-- AAAA-MM-DD (ex: 2006-07-14), independente do que é        -->
+        <!-- exibido ao usuário. A aparência visual varia por          -->
+        <!-- navegador e sistema operacional.                           -->
+        <input type="date" />
+
+        <!-- ─────────────────────────────────────────────────────── -->
+        <!-- 5.3 — Campo de pesquisa (type="search")                 -->
+        <!-- ─────────────────────────────────────────────────────── -->
+        <label>Pesquisa:</label>
+        <!-- type="search": funcionalmente similar ao type="text",    -->
+        <!-- mas com semântica de busca. Alguns navegadores adicionam  -->
+        <!-- um botão "×" para limpar o campo, e em mobile o teclado   -->
+        <!-- pode exibir um botão "Buscar" em vez de "Enter".          -->
+        <input type="search" />
+
+        <!-- ─────────────────────────────────────────────────────── -->
+        <!-- 5.4 — Campo de hora (type="time")                       -->
+        <!-- ─────────────────────────────────────────────────────── -->
+        <label>Hora:</label>
+        <!-- type="Time" (T maiúsculo): HTML é case-insensitive em    -->
+        <!-- valores de atributo — funciona igual a type="time".       -->
+        <!-- Exibe seletor de horas e minutos (HH:MM). O valor interno -->
+        <!-- fica no formato 24h: "14:30". Atributos opcionais:        -->
+        <!-- min="08:00" max="18:00" step="900" (a cada 15 min)        -->
+        <input type="Time" />
+
+        <!-- ─────────────────────────────────────────────────────── -->
+        <!-- 5.5 — Campo numérico (type="number")                    -->
+        <!-- ─────────────────────────────────────────────────────── -->
+        <label>Quantidade:</label>
+        <!-- type="number": aceita apenas valores numéricos. O         -->
+        <!-- navegador exibe setas ▲▼ para incrementar/decrementar.   -->
+        <!-- Atributos úteis: min="0" max="100" step="1"               -->
+        <!-- Em mobile, abre teclado numérico automaticamente.         -->
+        <input type="number" />
+
+        <!-- ATENÇÃO: este segundo input type="Time" não tem label     -->
+        <!-- associado — possível esquecimento de remoção ou campo     -->
+        <!-- extra sem finalidade. Em formulários acessíveis, todo     -->
+        <!-- input deve ter um label ou aria-label correspondente.     -->
+        <input type="Time" />
+
+        <!-- ─────────────────────────────────────────────────────── -->
+        <!-- 5.6 — Campo de telefone (type="tel")                    -->
+        <!-- ─────────────────────────────────────────────────────── -->
+        <label>Telefone:</label>
+        <!-- type="tel": em dispositivos móveis, abre o teclado        -->
+        <!-- numérico de telefone. NÃO valida o formato automaticamente.-->
+        <!-- Para validação, use o atributo pattern com regex:          -->
+        <!-- pattern="[0-9]{10,11}" → aceita 10 ou 11 dígitos          -->
+        <input type="tel" />
+
+        <!-- ─────────────────────────────────────────────────────── -->
+        <!-- 5.7 — Campo de URL (type="url")                         -->
+        <!-- ─────────────────────────────────────────────────────── -->
+        <label>Site:</label>
+        <!-- type="url": valida se o valor é uma URL bem formada.      -->
+        <!-- Exige o protocolo: http:// ou https:// na frente.         -->
+        <!-- Em mobile, o teclado exibe teclas extras como ".com", "/" -->
+        <input type="url" />
+
+        <!-- ─────────────────────────────────────────────────────── -->
+        <!-- 5.8 — Botões de seleção exclusiva (type="radio")        -->
+        <!-- ─────────────────────────────────────────────────────── -->
+        <!-- type="radio": permite selecionar APENAS UMA opção de     -->
+        <!-- um grupo. Para formar o grupo corretamente, todos os      -->
+        <!-- radios devem ter o MESMO atributo "name":                 -->
+        <!-- <input type="radio" name="genero" value="M" />           -->
+        <!-- <input type="radio" name="genero" value="F" />           -->
+        <!--                                                           -->
+        <!-- ATENÇÃO: os radios abaixo não têm "name" nem "value",    -->
+        <!-- então NÃO estão agrupados — ambos podem ser marcados      -->
+        <!-- ao mesmo tempo. Corrija para comportamento correto.        -->
+        <label for="Homem"> <input type="radio" />Masculino </label>
+        <label for="Mulher"> <input type="radio" />Feminino </label>
+
+        <!-- ─────────────────────────────────────────────────────── -->
+        <!-- 5.9 — Caixa de marcação (type="checkbox")              -->
+        <!-- ─────────────────────────────────────────────────────── -->
+        <label>Check</label>
+        <!-- type="checkbox": permite marcar ou desmarcar uma opção.   -->
+        <!-- Diferente do radio, múltiplos checkboxes de um mesmo      -->
+        <!-- formulário podem ser marcados simultaneamente.             -->
+        <!-- Adicione "checked" para deixar pré-marcado por padrão:    -->
+        <!-- <input type="checkbox" checked />                          -->
+        <input type="checkbox" />
+
+        <!-- ─────────────────────────────────────────────────────── -->
+        <!-- 5.10 — Botão de envio (type="submit")                   -->
+        <!-- ─────────────────────────────────────────────────────── -->
+        <label>Enviar</label>
+        <!-- type="submit": envia todos os dados do formulário para    -->
+        <!-- o endereço definido no atributo "action" do <form>.       -->
+        <!-- Tipos de botão disponíveis:                               -->
+        <!-- → type="submit" → envia o formulário                      -->
+        <!-- → type="reset"  → limpa TODOS os campos do formulário     -->
+        <!-- → type="button" → botão genérico sem ação padrão (requer  -->
+        <!--   JavaScript para funcionar)                               -->
+        <!--                                                           -->
+        <!-- DICA: prefira <button type="submit">Enviar</button>       -->
+        <!-- em vez de <input type="submit"> — o elemento <button>     -->
+        <!-- aceita HTML interno (ícones, formatação) e é mais          -->
+        <!-- flexível para estilização com CSS.                         -->
+        <input type="submit" />
+
+      </form>
+    </div>
+
+  </body>
+</html>

@@ -1,0 +1,55 @@
+Java -> Plataforma
+
+Fortemente e estaticamente tipada
+
+Organizado em Classes e Objetos
+
+Portátil (Write Once, Run Anywhere)
+
+Gerenciamento de Memória - Garbage Collector
+
+Retrocompatível ( Por isto banco usam JAVA pois os códigos 'antigos' não deixam de funcionar 
+
+										
+
+
+
+										
+
+
+										Como Funciona?
+
+
+Compilada - Gera um binário ( ex. específico pro Windows )
+
+Javac - compilador
+
+	- Transforma o .java em bytecode ( .class )
+
+	Bytecode != Máquina ( binário )
+
+	JVM - Java Virtual Machiine - Lê o bytecode e Traduz pra linguagem de máquina ( binário )
+
+	[Código Fonte ] -> [ Javac - Compila ] -> [ .class - Bytecode ] -> [ JVM do Windows ]  ||  [ JVM do Linux ]  ||  [ JVM  do MAC ]
+
+
+
+
+JIT - Just in Time Compilr - JVM começa interpretando o bytecode Mas, identificaquais trechos 
+
+
+JDK - Java Development Kit
+
+JDK - É o que instalamos para programar
+
+JRE - Java Runtime Environment
+Bicliotecas Padrão da linguagem
+JVM - Java Virtual Machine 
+Que executa o bytecode
+
+Ferramentas:
+	Javac
+	jar
+	javadoc
+	jdb
+

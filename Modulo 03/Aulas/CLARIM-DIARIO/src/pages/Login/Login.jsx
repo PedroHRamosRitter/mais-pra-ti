@@ -14,7 +14,7 @@ function Login() {
     function enviar(e) {
         e.preventDefault()
         try {
-            login(email, senha)
+            await login(email, senha)
             navigate('/')
         } catch (erro) {
             setAviso(erro.message)

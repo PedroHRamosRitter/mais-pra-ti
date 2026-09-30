@@ -1,0 +1,15 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: var(--fonte-corpo);
+  color: var(--cor-texto);
+  background: var(--cor-fundo);
+  line-height: 1.7;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+img { max-width: 100%; display: block; }
+
+site-header, site-footer, news-card { display: block; }

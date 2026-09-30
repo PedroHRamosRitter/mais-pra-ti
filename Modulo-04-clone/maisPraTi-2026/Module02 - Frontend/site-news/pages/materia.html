@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Batman lança o Batpapo - Clarim Diário</title>
+    <link rel="stylesheet" href="../css/main.css" />
+    <script src="../js/components/site-header.js"></script>
+    <script src="../js/components/news-card.js"></script>
+    <script src="../js/components/site-footer.js"></script>
+  </head>
+  <body>
+    <site-header></site-header>
+
+    <nav class="trilha">
+      <a href="index.html">Início</a>
+      <span>/</span>
+      <a href="#">Política</a>
+      <span>/</span>
+      <span class="atual">Batman Lança o BatePapo</span>
+    </nav>
+
+    <div class="conteudo">
+      <article class="materia">
+        <span class="categoria">Política</span>
+        <h1>Bruce Wayne é Visto Bêbado no Jantar da Casa Branca</h1>
+        <p class="linha-fina">
+          Bruce foi encontrado alucinando dizendo que tinha medo de morcegos.
+        </p>
+
+        <div class="autor">
+          <div class="avatar">BG</div>
+          <div>
+            <strong>Bárbara Gordon</strong>
+            <span class="data">18 de junho de 2026 - 8 min de leitura</span>
+          </div>
+          <div class="compartilhar">
+            <button class="btn btn--primary">Compartilhar</button>
+            <button class="btn btn--primary">Salvar</button>
+          </div>
+        </div>
+
+        <div class="texto">
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas
+            reprehenderit sed itaque nihil quis asperiores, maxime officia
+            facilis, tempora laudantium quidem? Ea odit omnis architecto ratione
+            doloremque fugit aliquid corporis.
+          </p>
+
+          <blockquote>
+            "Por trás de uma Máscara Existe um Homem de Verdade"
+          </blockquote>
+
+          <h2>Neste Dia, Coringa Nem Passou Maquiagem</h2>
+
+          <p>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ad,
+            eligendi, qui consequuntur natus consectetur non similique quo earum
+            perspiciatis ea totam, deserunt eius sunt dolorum! Eum aliquid in
+            natus nam!
+          </p>
+
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis,
+            minus molestias impedit itaque vero, odio expedita officiis a
+            aperiam corporis laboriosam magnam molestiae dignissimos vitae ut
+            perferendis nam voluptate dolorum!
+          </p>
+        </div>
+        <div class="tags">
+          <a href="#" class="tag">Heróis</a>
+          <a href="#" class="tag">Justiça</a>
+          <a href="#" class="tag">Vingança</a>
+          <a href="#" class="tag">Cachaça</a>
+        </div>
+
+        <figure class="imagem-destaque">
+          <img
+            src="../assets/images/batman.jpeg"
+            alt="Homens Fugindo Fantasiados"
+          />
+
+          <figcaption>Batman e Robin fogem da polícia</figcaption>
+        </figure>
+      </article>
+
+      <aside class="menu-lateral">
+        <div class="caixa">
+          <h3>Mais lidas</h3>
+          <ol>
+            <li>Robin Rouba Novamente o BatCarro</li>
+            <li>Peter Parker é o Novo Fotógrafo do Clarim</li>
+            <li>IA Substitui Programadores pela Segunda Vez esta Semana</li>
+            <li>Chuva Caí Molhada Mais uma Vez em Não-me-toque</li>
+          </ol>
+        </div>
+
+        <div class="caixa-newsletter">
+          <h3>Receba as notícias</h3>
+          <p>Assine nosso boletim diário.</p>
+          <input type="email" placeholder="seu@email.com" />
+          <button class="btn btn--primary">Assinar</button>
+        </div>
+      </aside>
+    </div>
+
+    <section class="relacionados">
+      <h2>Leia também</h2>
+      <div class="grade">
+        <news-card
+          categoria="Economia"
+          titulo="Dólar recua e bolsa fecha em alta"
+        ></news-card>
+        <news-card
+          categoria="Tecnologia"
+          titulo="Nova lei de dados entra em vigor"
+        ></news-card>
+        <news-card
+          categoria="Cultura"
+          titulo="Festival anuncia programação"
+        ></news-card>
+      </div>
+    </section>
+    <site-footer></site-footer>
+  </body>
+</html>

@@ -1,0 +1,123 @@
+.cabecalho { grid-area: cabecalho;}
+.principal { grid-area: principal;}
+.menu-lateral { grid-area: menu-lateral;}
+.rodape { grid-area: rodape;}
+
+.cabecalho {
+    border-bottom: 4px solid #1a1a1a;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 16px;
+}
+
+.logo {
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.navegacao {
+    display: flex;
+    gap: 22px;
+}
+
+.navegacao a {
+    text-decoration: none;
+    color: #1a1a1a;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+}
+
+.navegacao a:hover {
+    color: #c0392b;
+}
+
+/* Notícia de destaque */
+
+.destaque {
+    background-color: #ffffff;
+    padding: 24px;
+    border-radius: 8px;
+}
+
+.destaque h1 {
+    font-size: 30px;
+    margin: 10px 0;
+}
+
+.resumo {
+    color: #555;
+    font-size: 17px;
+}
+
+.categoria {
+    display: inline-block;
+    background-color: #c0392b;
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 3px;
+}
+
+.meta {
+    display: flex;
+    gap: 16px;
+    margin-top: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    color: #888;
+}
+
+/* Grid de Notícias */
+
+
+/* Barra Lateral */
+
+.menu-lateral {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.menu-lateral h3 {
+    border-bottom: 2px solid #c0392b;
+    padding-bottom: 8px;
+    margin-bottom: 12px;
+}
+
+.menu-lateral ol {
+    padding-left: 20px;
+}
+
+.menu-lateral li {
+    margin-bottom: 12px;
+    font-size: 15px;
+}
+
+.rodape {
+    background: #1a1a1a;
+    color: #fff;
+    text-align: center;
+    padding: 18px;
+    border-radius: 8px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+}
+
+@media (max-width: 768px) {
+    body {
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+        "cabecalho"
+        "principal"
+        "menu-lateral"
+        "rodape";
+    }
+
+    .cabecalho {
+        flex-direction: column;
+        gap: 12px;
+    }
+}

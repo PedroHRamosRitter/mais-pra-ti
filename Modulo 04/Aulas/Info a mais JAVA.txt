@@ -1,0 +1,3 @@
+print - imprimi na tela
+println - Imprimi na tela e pula a linha
+

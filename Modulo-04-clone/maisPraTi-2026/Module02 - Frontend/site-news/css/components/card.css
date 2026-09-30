@@ -1,0 +1,19 @@
+.cartao {
+    background-color: var(--cor-card);
+    border-radius: var(--raio);
+    padding: 18px;
+}
+
+.cartao__titulo {
+    font-size: 18px;
+    margin: 8px 0;
+}
+
+.cartao__resumo {
+    font-size: 15px;
+    color: var(--cor-suave);
+}
+
+.card--destaque { padding: 28px }
+.card--destaque .card__titulo { font-size: 30px; }
+.card--destaque .card__resumo { font-size: 17px; }

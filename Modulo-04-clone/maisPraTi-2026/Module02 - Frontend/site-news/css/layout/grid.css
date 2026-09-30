@@ -1,0 +1,48 @@
+.conteudo {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 32px;
+    align-items: start;
+    padding: 8px 0 40px;
+}
+
+.menu-lateral {
+    position: sticky;
+    top: 90px;
+}
+
+.grade-noticias {
+    display: grid;
+    grid-template-columns: repeat(autofit, minmax(220px, 1fr));
+    gap: 16px;
+    margin-top: 20px;
+}
+
+.relacionados .grade {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+@media (max-width: 820px) {
+    .conteudo {
+        grid-template-columns: 1fr;
+    }
+
+    .menu-lateral {
+        position: static;
+    }
+
+    .materia h1 {
+        font-size: 28px;
+    }
+
+    .rodape {
+        grid-template-columns: 1fr;
+    }
+
+    .cabecalho {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
