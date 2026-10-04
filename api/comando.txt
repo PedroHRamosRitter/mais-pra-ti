@@ -1,0 +1,8 @@
+cd nome da pasta/ -> entrar na pasta etc
+ls -> list = mostra o que tem na pasta
+mkdir "Nome da pasta" -> Criar pasta
+cd .. -> Volta arquivo
+git init -> transforma a pasta como repositório
+ls -a -> arquivos ocultos
+git status -> ver status
+pwd -> mostra o caminho real que você está
