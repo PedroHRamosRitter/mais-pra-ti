@@ -1,23 +1,33 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../../contexts/AuthContext'
+import { GoogleLogin } from '@react-oauth/google'
 
 function Login() {
     const [email, setEmail] = useState('')
     const [senha, setSenha] = useState('')
     const [aviso, setAviso] = useState('')
 
-    const { login } = useAuth()
+    const { login, loginComGoogle } = useAuth()
 
     const navigate = useNavigate()
 
-    function enviar(e) {
+    async function enviar(e) {
         e.preventDefault()
         try {
             await login(email, senha)
             navigate('/')
         } catch (erro) {
             setAviso(erro.message)
+        }
+    }
+
+    async function aoEntrarComGoogle(resposta) {
+        try {
+            await loginComGoogle(resposta.credential)
+            navigate('/')
+        } catch (erro) {
+            setAviso(erro.response?.data?.mensagem ?? "Não foi possível entrar com o Google")
         }
     }
 
@@ -38,6 +48,7 @@ function Login() {
                 <p className='rodape-form'>
                     Ainda não é assinante? <Link to='/cadastro'>Assine o Clarim</Link>
                 </p>
+                <GoogleLogin onSuccess={aoEntrarComGoogle} onError={() => setAviso('O login com o Google foi interrompido.')} />
             </form>
         </main>
     )

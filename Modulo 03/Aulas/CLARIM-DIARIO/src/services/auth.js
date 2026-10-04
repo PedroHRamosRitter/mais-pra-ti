@@ -10,6 +10,11 @@ function logou() {
     setUsuario(null)
 }
 
+export async function loginComGoogle(credential) {
+    const { data } = await api.post('/api/auth/google', { credential })
+    return data
+}
+
 export async function cadastrar(nome, email, senha) {
     await api.post('/api/usuarios', { nome, email, senha })
 }

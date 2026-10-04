@@ -40,7 +40,7 @@ function Cadastro() {
     }
   }
 
-  function enviar(e) {
+  async function enviar(e) {
     e.preventDefault()                       // o velho conhecido!
     try {
       await cadastrar (form.nome, form.email, form.senha)
